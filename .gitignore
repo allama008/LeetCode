@@ -1,0 +1,6 @@
+#Ignore .exe and .tds files
+*.exe
+*.tds
+
+#Ignore Rough Working files
+Checking*
