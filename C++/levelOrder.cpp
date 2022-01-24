@@ -68,7 +68,7 @@ struct TreeNode
         }
 };*/
 
-class Solution
+/*class Solution
 {
     public:
         vector<vector<int>> levelOrder(TreeNode* root) 
@@ -102,9 +102,9 @@ class Solution
             }
             return levelorderList;
         }
-};
+};*/
 
-/*class Solution
+class Solution
 {
     public:
         vector<vector<int>> vec;
@@ -124,7 +124,7 @@ class Solution
             recursiveHelper(root, 0);
             return vec;
         }
-};*/
+};
 
 int main()
 {
