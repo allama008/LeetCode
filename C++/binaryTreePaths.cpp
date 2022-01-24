@@ -20,7 +20,7 @@ struct TreeNode
     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
-class Solution 
+/*class Solution 
 {
     public:
         vector<string> binaryTreePaths(TreeNode* root) 
@@ -50,6 +50,33 @@ class Solution
             recursiveHelper(root->left, path, stringPath);
             recursiveHelper(root->right, path, stringPath);
             path.pop_back();
+        }
+};*/
+
+class Solution 
+{
+    public:
+        vector<string> stringPath;
+        vector<string> binaryTreePaths(TreeNode* root) 
+        {
+            recursiveHelper(root, "");
+            return stringPath;
+        }
+    private:
+        void recursiveHelper(TreeNode *root, string str)
+        {
+            if(!root)
+                return;
+            if(!(root->left) && !(root->right))
+            {
+                str.append(to_string(root->val));
+                stringPath.push_back(str);
+                return;
+            }
+            str.append(to_string(root->val));
+            str.append("->");
+            recursiveHelper(root->left, str);
+            recursiveHelper(root->right, str);
         }
 };
 
