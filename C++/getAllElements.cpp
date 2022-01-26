@@ -5,6 +5,7 @@ https://leetcode.com/problems/all-elements-in-two-binary-search-trees/
 
 #include<iostream>
 #include<vector>
+#include<algorithm>
 using namespace std;
 
 /**
@@ -21,6 +22,30 @@ struct TreeNode
 };
 
 class Solution 
+{
+    private:
+        void inorderTraversal(TreeNode *root, vector<int> &traversalList)
+        {
+            if(!root)
+                return;
+            inorderTraversal(root->left, traversalList);
+            traversalList.push_back(root->val);
+            inorderTraversal(root->right, traversalList);
+        }
+    public:
+        vector<int> getAllElements(TreeNode* root1, TreeNode* root2) 
+        {
+            vector<int> traversalList;
+            inorderTraversal(root1, traversalList);
+            inorderTraversal(root2, traversalList);
+            sort(traversalList.begin(), traversalList.end());
+            return traversalList;
+        }
+};
+
+// IMPLEMENTED MERGE SORT FROM SCRATCH. THE ABOVE SOLUTION SIMPLY REPLACES MERGE SORT
+// WITH SORT ALGORITHM FROM STL
+/*class Solution 
 {
     private:
         void inorderTraversal(TreeNode *root, vector<int> &traversalList)
@@ -68,23 +93,23 @@ class Solution
             mergedList = mergeSortList(firstList, secondList);
             return mergedList;
         }
-};
+};*/
 
 int main()
 {
-    /*TreeNode *node = new TreeNode(2);
+    TreeNode *node = new TreeNode(2);
     node->left = new TreeNode(1);
     node->right = new TreeNode(4);
 
     TreeNode *node1 = new TreeNode(1);
     node1->left = new TreeNode(0);
-    node1->right = new TreeNode(3);*/
+    node1->right = new TreeNode(3);
 
-    TreeNode *node = new TreeNode(1);
+    /*TreeNode *node = new TreeNode(1);
     node->right = new TreeNode(8);
 
     TreeNode *node1 = new TreeNode(8);
-    node1->left = new TreeNode(1);
+    node1->left = new TreeNode(1);*/
 
     vector<int> finalAnswer;
 
