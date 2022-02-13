@@ -4,7 +4,6 @@ https://leetcode.com/problems/balanced-binary-tree/
 */
 
 #include<iostream>
-#include<stdlib.h>
 using namespace std;
 
 /**
@@ -20,6 +19,8 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+
+// Original approach which is not working
 /*class Solution 
 {
     public:
@@ -45,6 +46,33 @@ struct TreeNode
         }
 };*/
 
+// My modified solution which is working
+class Solution 
+{
+    private:
+        bool ans = true;
+        int recursiveHelper(TreeNode *root, int depth)
+        {
+            if(!root)
+                return depth - 1;
+            if(!ans)
+                return 0;
+            int leftSubtree = recursiveHelper(root->left, depth + 1);
+            int rightSubtree = recursiveHelper(root->right, depth + 1);
+            if(abs(leftSubtree - rightSubtree) > 1)
+                ans = false;
+            return max(leftSubtree, rightSubtree);
+        }
+    public:
+        bool isBalanced(TreeNode* root) 
+        {
+            recursiveHelper(root, 1);
+            return ans;
+        }
+};
+
+// Solution from Discussion after failing to do it
+/*
 class Solution 
 {
     private:
@@ -67,7 +95,7 @@ class Solution
             checkBalance(root);
             return ans;
         }
-};
+};*/
 
 int main()
 {
