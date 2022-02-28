@@ -21,6 +21,33 @@ struct TreeNode
     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+//New working solution of 27th February 2022
+class Solution 
+{
+    private:
+        void inorderTraversal(TreeNode *root, vector<int> &traversalList)
+        {
+            if(!root)
+                return;
+            inorderTraversal(root->left, traversalList);
+            traversalList.push_back(root->val);
+            inorderTraversal(root->right, traversalList);
+        }
+    public:
+        vector<int> getAllElements(TreeNode* root1, TreeNode* root2) 
+        {
+            vector<int> traversalList1, traversalList2;
+            inorderTraversal(root1, traversalList1);
+            inorderTraversal(root2, traversalList2);
+            int finalListSize = traversalList1.size() + traversalList2.size();
+            vector<int> finalList(finalListSize);
+            merge(traversalList1.begin(), traversalList1.end(), traversalList2.begin(), traversalList2.end(), finalList.begin());
+            return finalList;
+        }
+};
+
+//WORKING SOLUTION OF 25th January 2022
+/*
 class Solution 
 {
     private:
@@ -42,6 +69,7 @@ class Solution
             return traversalList;
         }
 };
+*/
 
 // IMPLEMENTED MERGE SORT FROM SCRATCH. THE ABOVE SOLUTION SIMPLY REPLACES MERGE SORT
 // WITH SORT ALGORITHM FROM STL
