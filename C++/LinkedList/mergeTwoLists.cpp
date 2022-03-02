@@ -15,6 +15,30 @@ struct ListNode
     ListNode(int x) : val(x), next(nullptr) {}
     ListNode(int x, ListNode *next) : val(x), next(next) {}
 };
+
+class Solution
+{
+    public:
+        ListNode* mergeTwoLists(ListNode* list1, ListNode* list2) 
+        {
+            if(!list1)
+                return list2;
+            if(!list2)
+                return list1;
+            if(list1->val <= list2->val)
+            {
+                list1->next = mergeTwoLists(list1->next, list2);
+                return list1;
+            }
+            else
+            {
+                list2->next = mergeTwoLists(list1, list2->next);
+                return list2;
+            }
+        }
+};
+
+/* Bakwaas solution by me. Too much computing. Simple and elegant implementation above.
 class Solution 
 {
     public:
@@ -42,11 +66,11 @@ class Solution
             }
             
 
-            /*int x = (list1 != NULL) ? list1->val : 300;
-            int y = (list2 != NULL) ? list2->val : 300;
-            ListNode* curr = (x <= y) ? list1 : list2;
-            curr->next = mergeTwoLists((x <= y) ? list1->next : list1, (x <= y) ? list2 : list2->next);
-            return curr;*/
+            // int x = (list1 != NULL) ? list1->val : 300;
+            // int y = (list2 != NULL) ? list2->val : 300;
+            // ListNode* curr = (x <= y) ? list1 : list2;
+            // curr->next = mergeTwoLists((x <= y) ? list1->next : list1, (x <= y) ? list2 : list2->next);
+            // return curr;
 
 
             
@@ -54,6 +78,7 @@ class Solution
 
         }
 };
+*/
 int main()
 {
     vector<int> vec1 = {4, 2, 1};
@@ -95,7 +120,7 @@ int main()
     cout<<endl;*/
 
     Solution solObj;
-    ListNode *finalAnswer = solObj.mergeTwoLists(/*firstNode1*/NULL, secondNode);
+    ListNode *finalAnswer = solObj.mergeTwoLists(firstNode1/*NULL*/, secondNode);
     while (finalAnswer != NULL) 
     {
         cout << finalAnswer->val << " ";
