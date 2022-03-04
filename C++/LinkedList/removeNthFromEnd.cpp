@@ -64,6 +64,32 @@ class Solution
         }
 };
 
+//First implementation by me which did not work.
+/*
+class Solution 
+{
+    public:
+        ListNode* removeNthFromEnd(ListNode* head, int n) 
+        {
+            ListNode *fastPointer = head, *slowPointer = head, *deletePointer = head;
+            while(slowPointer && fastPointer)
+            {
+                for(int i = 0; i < n && fastPointer; i++)
+                    fastPointer = fastPointer->next;
+                if(n == 1 && !slowPointer->next)
+                    break;
+                slowPointer = slowPointer->next;
+            }
+            if(deletePointer == slowPointer)
+                return NULL;
+            while(deletePointer && deletePointer->next != slowPointer)
+                deletePointer = deletePointer->next;
+            deletePointer->next = slowPointer->next;
+            return head;
+        }
+};
+*/
+
 
 int main()
 {
