@@ -10,6 +10,7 @@ using namespace std;
 
 class Solution {
 public:
+    int 
     int findMaxForm(vector<string>& strs, int m, int n) 
     {
         
